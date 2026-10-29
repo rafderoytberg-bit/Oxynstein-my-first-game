@@ -1,13 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Моя первая игра</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>Арена героев</title>
+<style>
+  body {
+    background: #101525;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+  }
+  .arena {
+    background: #222d47;
+    border: 2px solid #d5a54d;
+    border-radius: 18px;
+    padding: 25px;
+    max-width: 400px;
+    margin: auto;
+  }
+  button {
+    background: #d5a54d;
+    padding: 14px 25px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-  <h1>Моя первая игра!</h1>
-  <button onclick="alert('Герой готов к бою!')">
-    Начать игру
-  </button>
+  <div class="arena">
+    <h1>⚔️ Арена героев</h1>
+    <p>Твой герой готов к битве!</p>
+    <h2 id="health">❤️ Здоровье врага: 100</h2>
+    <button onclick="attack()">⚔️ Атаковать</button>
+    <p id="message">Нажми для атаки!</p>
+  </div>
+
+<script>
+  let health = 100;
+
+  function attack() {
+    if (health <= 0) {
+      health = 100;
+    }
+
+    health = Math.max(0, health - 20);
+
+    document.getElementById("health").innerText =
+      "❤️ Здоровье врага: " + health;
+
+    document.getElementById("message").innerText =
+      health === 0
+        ? "🏆 Победа! Нажми для новой битвы."
+        : "💥 Ты нанёс 20 урона!";
+  }
+</script>
 </body>
 </html>
